@@ -1,8 +1,8 @@
-# callout2latex.lua: Convert Markdown Callout Blocks into LaTeX Environments
+# callout2latex.lua: Convert Markdown Callout Blocks into \LaTeX\ Environments
 
 ## Description
 
-`callout2latex.lua` is a Pandoc Lua filter for converting GitHub, Typora, Obsidian, and Microsoft[^1] styled Markdown Callout Blocks (also known as Alert Blocks, Message Boxes, or Admonitions[^2]) into LaTeX environments.
+`callout2latex.lua` is a Pandoc Lua filter for converting GitHub, Typora, Obsidian, and Microsoft[^1] styled Markdown Callout Blocks (also known as Alert Blocks, Message Boxes, or Admonitions[^2]) into \LaTeX\ environments.
 
 The basic functionality of this script has been implemented correctly, although some issues still remain, which I plan to address in future updates.
 
@@ -39,7 +39,7 @@ A note callout block without a title:
 > Or even a new paragraph. 
 ```
 
-It will be converted to LaTeX as:
+It will be converted to \LaTeX\ as:
 
 ```tex {.numberLines}
 A note callout block with a title:
@@ -71,12 +71,12 @@ Or even a new paragraph.
 Here are a few things to note about this filter script[^3]:
 
 1. Currently, ordered lists (`enumerate`) and unordered lists (`itemize`) are not supported within callout blocks.
-2. Every single line in the callout block will be converted into one paragraph in LaTeX.
+2. Every single line in the callout block will be converted into one paragraph in \LaTeX\.
 
 > [!WARNING]
 > **DO NOT USE SPACE AFTER THE TYPE LABEL.**
 >
-> Leaving a space (or any other blank character) after the callout block type label `[!TYPE]` may cause unwanted and unexpected LaTeX formatting. For example:
+> Leaving a space (or any other blank character) after the callout block type label `[!TYPE]` may cause unwanted and unexpected \LaTeX\ formatting. For example:
 >
 > ```markdown {.numberLines}
 > > [!NOTE]
@@ -194,7 +194,7 @@ Consider the following Markdown syntax:
 > Negative potential consequences of an action.
 ```
 
-After running `pandoc` with the Lua filter, the above blocks will be converted into LaTeX environments. (Ensure the required environments are defined in your document class[^4]. See `example.cls` for their definitions.)
+After running `pandoc` with the Lua filter, the above blocks will be converted into \LaTeX\ environments. (Ensure the required environments are defined in your document class[^4]. See `example.cls` for their definitions.)
 
 > [!NOTE]
 > Highlights information that users should take into account, even when skimming.
@@ -213,7 +213,7 @@ After running `pandoc` with the Lua filter, the above blocks will be converted i
 
 ### Theorem Environments
 
-This script supports custom LaTeX environments. For example[^5], if you've defined `definition` and `theorem` environments correctly in your document class, you can use the following syntax:
+This script supports custom \LaTeX\ environments. For example[^5], if you've defined `definition` and `theorem` environments correctly in your document class, you can use the following syntax:
 
 > [!definition] Left Coset
 > Let $H$ be a subgroup of a group~$G$.  A \emph{left coset} of $H$ in $G$ is a subset of $G$ that is of the form $xH$, where $x \in G$ and $xH = \{ xh : h \in H \}$. Similarly, a \emph{right coset} of $H$ in $G$ is a subset of $G$ that is of the form $Hx$, where $Hx = \{ hx : h \in H \}$
@@ -221,17 +221,7 @@ This script supports custom LaTeX environments. For example[^5], if you've defin
 > [!theorem] Lagrange's Theorem
 > Let $G$ be a finite group, and let $H$ be a subgroup of $G$. Then the order of $H$ divides the order of $G$.
 
-These will be converted to LaTeX environments:
-
-```tex {.numberLines}
-\begin{definition}[Left Coset]
-Let $H$ be a subgroup of a group~$G$. A \emph{left coset} of $H$ in $G$ is a subset of $G$ that is of the form $xH$, where $x \in G$ and $xH = \{ xh : h \in H \}$. Similarly, a \emph{right coset} of $H$ in $G$ is a subset of $G$ that is of the form $Hx$, where $Hx = \{ hx : h \in H \}$.
-\end{definition}
-
-\begin{theorem}[Lagrange's Theorem]
-Let $G$ be a finite group, and let $H$ be a subgroup of $G$. Then the order of $H$ divides the order of $G$.
-\end{theorem}
-```
+See [`README.pdf`](README.pdf) for the formatted theorem of the \LaTeX\ output.
 
 ## License
 
