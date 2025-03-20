@@ -1,0 +1,18 @@
+documentclass: example
+classoption: 12pt, a4paper
+geometry: margin=1in
+toc: true
+numbersections: true
+colorlinks: true
+
+author: GitHubonline1396529
+date: March 20th, 2025
+abstract: This is the `README.md` file of `callout2latex.lua`, the pandoc Lua filter for converting Markdown callout blocks into \LaTeX\ Environments. This document introduced the features and usage of the script, and provided some examples.
+
+# Warp lines in code blocks
+header-includes:
+  - \usepackage{fvextra}
+  - |
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+      breaklines,commandchars=\\\{\}
+    }
