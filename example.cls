@@ -47,7 +47,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Define colors for alart blocks.
 
-\definecolor{notetypecolor}{HTML}{005b96}%
+\definecolor{notetypecolor}{HTML}{316dca}%
 \definecolor{warningtypecolor}{HTML}{BB8009}%
 \definecolor{tiptypecolor}{HTML}{2EA043}%
 \definecolor{importanttypecolor}{HTML}{8256D0}%
