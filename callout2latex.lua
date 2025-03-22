@@ -5,7 +5,7 @@
 --
 -- Author: DeepSeek, ChatGPT, Githubonline1396529
 -- Date: 2023-10-11
--- Version: 0.0.1.2 (dev)
+-- Version: 0.0.1.2
 -- Usage:
 --
 -- For example, Convert File.md to File.tex.
