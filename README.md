@@ -2,9 +2,11 @@
 
 ## Description
 
-`callout2latex.lua` is a Pandoc Lua filter for converting GitHub, Typora, Obsidian, and Microsoft[^1] styled Markdown Callout Blocks (also known as Alert Blocks, Message Boxes, or Admonitions[^2]) into \LaTeX\ environments.
+`callout2latex.lua` is a Pandoc Lua filter for converting [GitHub](https://github.com/orgs/community/discussions/16925), [Typora](https://github.com/typora-community-plugin/typora-plugin-callout), [Obsidian](https://help.obsidian.md/callouts#:~:text=To%20create%20a%20callout%2C%20add%20%60%5B%21info%5D%60%20to%20the,identifier%20determines%20how%20the%20callout%20looks%20and%20feels.), and [Microsoft](https://learn.microsoft.com/en-us/contribute/content/markdown-reference#alerts-note-tip-important-caution-warning)[^1] styled Markdown Callout Blocks (also known as Alert Blocks, Message Boxes, or Admonitions[^2]) into \LaTeX\ environments.
 
 The basic functionality of this script has been implemented correctly, although some issues still remain, which I plan to address in future updates.
+
+Most of this script was generated with the assistance of [ChatGPT](https://chatgpt.com/) and [DeepSeek](https://chat.deepseek.com/), with minor modifications made by me.
 
 ## Key Features
 
@@ -94,7 +96,7 @@ Here are a few things to note about this filter script[^3]:
 
 ## Installation
 
-To install `callout2latex.lua` and make it accessible globally, follow these steps:
+To install `callout2latex.lua` and make it accessible globally on localhost, follow these steps:
 
 ### Locate Pandoc's User Data Directory
 
@@ -120,7 +122,7 @@ If the directory does not exist, create it manually.
 
 ### Copy the Filter to the Filters Directory
 
-Inside the user data directory, locate or create a `filters` subdirectory:
+Inside the user data directory, locate or create a `filters` subdirectory (`~/.pandoc/finters` as an example):
 
 ```bash
 mkdir -p ~/.pandoc/filters
@@ -221,18 +223,14 @@ This script supports custom \LaTeX\ environments. For example[^5], if you've def
 > [!theorem] Lagrange's Theorem
 > Let $G$ be a finite group, and let $H$ be a subgroup of $G$. Then the order of $H$ divides the order of $G$.
 
-See [`README.pdf`](README.pdf) for the formatted theorem of the \LaTeX\ output.
+See [`README.pdf`](README.pdf) for the formatted Theorem of the \LaTeX\ output.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Acknowledgement
-
-Most of this script was generated with the assistance of [ChatGPT](https://chatgpt.com/) and [DeepSeek](https://chat.deepseek.com/), with minor modifications made by me.
+This project is licensed under the MIT License. See the [`LICENSE`](LICENSE) file for details.
 
 [^1]: There are some minor differences between the syntax formats defined across different platforms.
 [^2]: These terms are interchangeable and refer to the same feature.
 [^3]: These limitations will be addressed in future updates.
-[^4]: Make sure to define the required environments in your document class.
+[^4]: Make sure to define the required environments in your \LaTeX\ document class.
 [^5]: This is an example from [ElegantNote](https://github.com/ElegantLaTeX/ElegantNote/blob/master/elegantnote-cn.tex).

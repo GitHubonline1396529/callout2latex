@@ -1,5 +1,5 @@
 documentclass: example
-classoption: 12pt, a4paper
+classoptions: 12pt, a4paper
 geometry: margin=1in
 toc: true
 numbersections: true
