@@ -54,7 +54,7 @@ This is a line of info.
 
 A note callout block without a title:
 
-\begin{note}[]
+\begin{note}
 
 This is a line of info
 

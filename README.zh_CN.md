@@ -54,7 +54,7 @@ pandoc file.md --output file.pdf --lua-filter callout2latex.lua
 
 没有标题的 note 提示块：
 
-\begin{note}[]
+\begin{note}
 
 这里是一些提示信息
 

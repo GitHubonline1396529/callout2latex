@@ -5,7 +5,7 @@
 --
 -- Author: DeepSeek, ChatGPT, Githubonline1396529
 -- Date: 2023-10-11
--- Version: 0.0.1.1
+-- Version: 0.0.1.2 (dev)
 -- Usage:
 --
 -- For example, Convert File.md to File.tex.
@@ -200,10 +200,19 @@ function BlockQuote(el)
     
     -- LaTeX environment start with optional title
     local output_blocks = pandoc.List()
-    output_blocks:insert(pandoc.RawBlock('latex', 
-        '\\begin{'..env_name..'}'..(title_str and ('['..title_str..']') or '')
-	)
-    )
+    local title_part = ''
+
+    if title_str ~= nil and not title_str:match('^%s*$') then
+        title_part = '[' .. title_str .. ']'
+    end
+    
+    output_blocks:insert(pandoc.RawBlock('latex',
+        '\\begin{' .. env_name .. '}' .. title_part
+    ))
+
+    -- output_blocks:insert(pandoc.RawBlock('latex', 
+    --     '\\begin{'..env_name..'}'..(title_str and ('['..title_str..']') or '')
+    -- ))
 
     -- Insert processed content blocks
     output_blocks:extend(content_blocks)
