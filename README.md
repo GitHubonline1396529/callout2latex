@@ -10,9 +10,11 @@ Most of this script was generated with the assistance of [ChatGPT](https://chatg
 
 ## Key Features
 
-- No additional syntax introduced.
-- Compatibility across different platforms.
-- Lightweight (just one Lua script), simple and easy to use.
+Comparing with the [pandoc-latex-admonition](https://github.com/chdemko/pandoc-latex-admonition), which is a pandoc filter which allows you to add markdown admonitions to divs or codeblocks elements, this script has the following different features:
+
+1. Use a more common syntax of admonition (Instead of using pandoc native `Div`), which is more commonly supported by different platforms and editors, and no additional syntax is introduced.
+2. No matter what the admonition name is specified to be, this script always simply just pass the admonition type name to the the \LaTeX\ environment name *intactly*, which provides users with maximized freedom.
+3. Lightweight (just one Lua script), simple and easy to use.
 
 ## Usage
 

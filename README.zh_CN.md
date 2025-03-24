@@ -10,8 +10,10 @@
 
 ## 主要特性
 
-- 无需引入额外的语法。
-- 跨平台兼容性。
+与现有的将 adminition 转化为 \LaTeX\ 的 pandoc 过滤器 [pandoc-latex-admonition](https://github.com/chdemko/pandoc-latex-admonition) 过滤器相比，这个脚本具有如下的几个优势：
+
+1. 使用更普遍的 Adminition 语法 (而不是 pandoc 原生的 `Div`)，能够被更多的编辑器和平台支持，且不引入额外的语法。
+- 无论用户如何指定 Adimintion 的名称，脚本都只会简单地将 Adimintion 的名称“原封不动”地传递给 \LaTeX\ 的环境名称，从而给予用户最大的自由度。
 - 足够轻量（仅一个 Lua 脚本），简单易用。
 
 ## 使用方法
