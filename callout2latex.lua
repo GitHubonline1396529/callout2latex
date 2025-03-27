@@ -1,16 +1,15 @@
--- callout2latex.lua
+--- Pandoc Lua filter to convert Obsidian/Markdown callout blocks to LaTeX environments.
+-- @module callout2latex
+-- @author DeepSeek, ChatGPT, Githubonline1396529
+-- @release 0.0.2.0
+-- @usage
 -- Pandoc Lua filter to GitHub / Obsidian / Microsoft styled Markdown Callout
 -- Blocks / Alart Blocks / Message Boxes / Admonitions callout blocks to LaTeX
 -- environments.
 --
--- Author: DeepSeek, ChatGPT, Githubonline1396529
--- Date: 2023-10-11
--- Version: 0.0.1.2
--- Usage:
---
 -- For example, Convert File.md to File.tex.
 -- +----------------------------------+--------------------------------------+
--- |    Before Convert                |    After Convert                     |
+-- | Input                            | Output                               |
 -- +----------------------------------+--------------------------------------+
 -- | > [!note] This is the note title | \begin{note}[This is the note title] |
 -- | > This is a line of info.        |                                      |
@@ -32,12 +31,10 @@
 --
 -- Here are a few things to note about this filter script:
 -- 
--- 1. Currently, ordered lists (`enumerate`) and unordered lists (`itemize`)
---    are not supported within callout blocks.
--- 2. Every single line in the callout block will be converted into one 
---    paragraph in LaTeX.
+-- Firstly, Every single line in the callout block will be converted into one 
+-- paragraph in LaTeX.
 -- 
--- DO NOT USE SPACE AFTER THE TYPE LABEL
+-- Secondly, DO NOT USE SPACE AFTER THE TYPE LABEL !
 --  
 -- Leaving a space (or any other blank character) after the callout block type
 -- label `[!TYPE]` may cause unwanted and unexpected LaTeX formatting. For 
@@ -58,7 +55,7 @@
 --  
 -- This may result in unexpected formatting of the content.
 --
--- LICENSE --------------------------------------------------------------------
+-- @license MIT
 --
 -- MIT License
 --
@@ -84,37 +81,27 @@
 local types = require 'pandoc.utils'.type
 local stringify = require 'pandoc.utils'.stringify
 
---[[
-Pandoc AST Structure Insight:
-A Markdown blockquote:
+--- Handle list conversion (WIP)
+-- @local
+-- @param list pandoc.List List element to process
+-- @return string LaTeX formatted list
+local function handle_list(list)
+  local env = (list.t == "BulletList") and "itemize" or "enumerate"
+  local result = {"\\begin{" .. env .. "}"}
+  for _, item in ipairs(list.content) do
+    table.insert(
+        result, "\\item " .. pandoc.write(pandoc.Pandoc(item), "latex")
+    )
+  end
+  table.insert(result, "\\end{" .. env .. "}")
+  return table.concat(result, "\n")
+end
 
-> [!note] Title
-> Content
-
-Is parsed as:
-
-BlockQuote {
-  content = {
-    Para {
-      Str "[!note]", Space, Str "Title", SoftBreak, 
-      Str "Content"
-    }
-  }
-}
-
-Try `pandoc -t native file.md > doctree.ast` to see the output.
-
-This filter needs to:
-
-1. Identify the [!type] marker
-2. Separate title from content
-3. Rebuild as LaTeX environment
-
-]]
-
-local types = require 'pandoc.utils'.type
-local stringify = require 'pandoc.utils'.stringify
-
+--- Main processing function for BlockQuote elements.
+-- @function BlockQuote
+-- @param el pandoc.BlockQuote The blockquote element to process
+-- @return pandoc.Blocks|nil Modified elements or original if not a callout
+-- @usage
 function BlockQuote(el)
     -- Validate block structure: First element must be a paragraph.
     if #el.content < 1 or el.content[1].t ~= 'Para' then
@@ -137,6 +124,7 @@ function BlockQuote(el)
             break
         end
     end
+
     if not marker_idx then return el end
 
     -- Extract callout type from marker (e.g., "note" from [!note])
@@ -146,6 +134,7 @@ function BlockQuote(el)
     -- Find content starting point after first SoftBreak.
     -- This separates title from content in the AST.
     local content_start_idx = nil
+
     for i = marker_idx + 1, #first_para do
         if first_para[i].t == 'SoftBreak' then
             content_start_idx = i + 1  -- Skip SoftBreak itself.
@@ -186,7 +175,17 @@ function BlockQuote(el)
 
     -- Add subsequent blocks (other Markdown elements after first paragraph)
     for i = 2, #el.content do
-        content_blocks:insert(el.content[i])
+        -- content_blocks:insert(el.content[i])
+        --
+        -- Try to deal with lists in quote block.
+        local block = el.content[i]
+        if block.t == "BulletList" or block.t == "OrderedList" then
+            content_blocks:insert(
+            pandoc.RawBlock("latex", handle_list(block))
+        )
+        else
+            content_blocks:insert(block)
+        end
     end
 
     -- Build LaTeX output -----------------------------------------------------
@@ -222,4 +221,3 @@ function BlockQuote(el)
 
     return output_blocks
 end
-

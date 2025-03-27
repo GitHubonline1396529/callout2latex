@@ -74,9 +74,6 @@ Or even a new paragraph.
 
 Here are a few things to note about this filter script[^3]:
 
-1. Currently, ordered lists (`enumerate`) and unordered lists (`itemize`) are not supported within callout blocks.
-2. Every single line in the callout block will be converted into one paragraph in \LaTeX\.
-
 > [!WARNING]
 > **DO NOT USE SPACE AFTER THE TYPE LABEL.**
 >
@@ -95,6 +92,8 @@ Here are a few things to note about this filter script[^3]:
 > ```
 >
 > This may result in unexpected formatting of the content.
+
+Currently, ordered lists (`enumerate`) and unordered lists (`itemize`) are not supported within callout blocks.
 
 ## Installation
 

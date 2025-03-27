@@ -74,9 +74,6 @@ pandoc file.md --output file.pdf --lua-filter callout2latex.lua
 
 关于该过滤器脚本，有以下几点需要注意[^3]：
 
-1. 目前，不支持在提示块中使用有序列表 (`enumerate`) 和无序列表 (`itemize`)。
-2. 提示块中的每一行都会被转换成 \LaTeX\ 中的一个段落。
-
 > [!WARNING]
 > **不要在类型标签后加空格！**
 >
@@ -95,6 +92,8 @@ pandoc file.md --output file.pdf --lua-filter callout2latex.lua
 > ```
 >
 > 这可能导致生成的内容格式不符合预期。
+
+除此之外，提示块中的每一行都会被转换成 \LaTeX\ 中的一个段落。
 
 ## 安装
 
