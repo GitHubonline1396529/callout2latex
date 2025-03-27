@@ -205,9 +205,12 @@ function BlockQuote(el)
         title_part = '[' .. title_str .. ']'
     end
     
-    output_blocks:insert(pandoc.RawBlock('latex',
-        '\\begin{' .. env_name .. '}' .. title_part
-    ))
+    output_blocks:insert(
+        pandoc.RawBlock(
+            'latex',
+            '\\begin{' .. env_name .. '}' .. title_part
+        )
+    )
 
     -- Insert processed content blocks
     output_blocks:extend(content_blocks)
