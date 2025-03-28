@@ -1,7 +1,8 @@
---- Pandoc Lua filter to convert Obsidian/Markdown callout blocks to LaTeX environments.
+--- Pandoc Lua filter to convert Obsidian/Markdown callout blocks to LaTeX
+--- environments.
 -- @module callout2latex
 -- @author DeepSeek, ChatGPT, Githubonline1396529
--- @release 0.0.2.0
+-- @release 0.0.2.1
 -- @usage
 -- Pandoc Lua filter to GitHub / Obsidian / Microsoft styled Markdown Callout
 -- Blocks / Alart Blocks / Message Boxes / Admonitions callout blocks to LaTeX
